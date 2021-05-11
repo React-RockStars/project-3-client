@@ -17,7 +17,8 @@ class App extends Component {
     this.state = {
       user: null,
       msgAlerts: [],
-      signUpModal: true
+      signUpModal: true,
+      signInModal: true
     }
   }
 
@@ -45,6 +46,13 @@ class App extends Component {
   onSignUpModalClose = () => {
     this.setState({ signUpModal: false })
   }
+  onSignInModalShow = () => {
+    this.setState({ signInModal: true })
+  }
+
+  onSignInModalClose = () => {
+    this.setState({ signInModal: false })
+  }
 
   render () {
     const { msgAlerts, user } = this.state
@@ -67,7 +75,7 @@ class App extends Component {
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} onSignUpModalShow={this.onSignUpModalShow} onSignUpModalClose={this.onSignUpModalClose} signUpModal={this.state.signUpModal}/>
           )} />
           <Route path='/sign-in' render={() => (
-            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} onSignInModalShow={this.onSignInModalShow} onSignInModalClose={this.onSignInModalClose} signInModal={this.state.signInModal}/>
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
@@ -75,7 +83,7 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/posts' render={() => (
+          <AuthenticatedRoute user={user} exact path='/posts' render={() => (
             <ShowPosts msgAlert={this.msgAlert} user={user} />
           )} />
         </main>

@@ -11,10 +11,9 @@ class ShowPosts extends Component {
       posts: null
     }
   }
-
   componentDidMount () {
-    const { msgAlert } = this.props
-    showPosts()
+    const { msgAlert, user } = this.props
+    showPosts(user)
       .then(res => {
         this.setState({ posts: res.data.posts })
       })

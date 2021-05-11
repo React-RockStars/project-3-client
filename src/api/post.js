@@ -1,8 +1,7 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
-export const showPosts = () => {
-  const { user } = this.props
+export const showPosts = (user) => {
   return axios({
     method: 'GET',
     url: apiUrl + '/posts',

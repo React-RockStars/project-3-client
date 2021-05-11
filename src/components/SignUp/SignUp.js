@@ -108,14 +108,6 @@ class SignUp extends Component {
               </div>
             </div>
           </Modal.Body>
-          {/* Modal.Footer>
-            <Button variant="secondary" onClick={this.props.onSignUpModalClose}>
-            Close
-            </Button>
-            <Button variant="primary" onClick={this.props.onSignUpModalClose}>
-            Save Changes
-            </Button>
-          </Modal.Footer> */}
         </Modal>
       </div>
     )
