@@ -10,6 +10,7 @@ import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import ShowPosts from './components/ShowPosts/ShowPosts'
+import CreatePost from './components/CreatePost/CreatePost'
 
 class App extends Component {
   constructor (props) {
@@ -19,7 +20,8 @@ class App extends Component {
       msgAlerts: [],
       signUpModal: true,
       signInModal: true,
-      changePasswordModal: true
+      changePasswordModal: true,
+      createPostModal: true
     }
   }
 
@@ -62,6 +64,15 @@ class App extends Component {
   onChangePasswordModalClose = () => {
     this.setState({ changePasswordModal: false })
   }
+
+  onCreatePostModalShow = () => {
+    this.setState({ createPostModal: true })
+  }
+
+  onCreatePostModalClose = () => {
+    this.setState({ createPostModal: false })
+  }
+
   render () {
     const { msgAlerts, user } = this.state
 
@@ -89,10 +100,13 @@ class App extends Component {
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
-            <ChangePassword msgAlert={this.msgAlert} user={user} onChangePasswordModalShow={this.onChangePasswordModalShow} onChangePasswordModalClose={this.onChangePasswordModalClose} changePasswordModal={this.state.changePasswordModal} />
+            <ChangePassword msgAlert={this.msgAlert} user={user} onChangePasswordModalShow={this.onChangePasswordModalShow} onChangePasswordModalClose={this.onChangePasswordModalClose} changePasswordModal={this.state.changePasswordModal}/>
           )} />
           <AuthenticatedRoute user={user} exact path='/posts' render={() => (
             <ShowPosts msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/create-post' render={() => (
+            <CreatePost msgAlert={this.msgAlert} user={user} onCreatePostModalShow={this.onCreatePostModalShow} onCreatePostModalClose={this.onCreatePostModalClose} createPostModal={this.state.createPostModal}/>
           )} />
         </main>
       </Fragment>

@@ -11,16 +11,18 @@ export const showPosts = (user) => {
   })
 }
 
-// export const signUp = credentials => {
-//   return axios({
-//     method: 'POST',
-//     url: apiUrl + '/sign-up',
-//     data: {
-//       credentials: {
-//         email: credentials.email,
-//         password: credentials.password,
-//         password_confirmation: credentials.passwordConfirmation
-//       }
-//     }
-//   })
-// }
+export const createPost = (postData, user) => {
+  return axios({
+    method: 'POST',
+    url: apiUrl + '/posts',
+    headers: {
+      'Authorization': `Bearer ${user.token}`
+    },
+    data: {
+      post: {
+        title: postData.title,
+        body: postData.body
+      }
+    }
+  })
+}

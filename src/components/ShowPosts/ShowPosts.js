@@ -39,13 +39,14 @@ class ShowPosts extends Component {
       )
     } else {
       postsJsx = (
-        <ul>
+        <div>
           {this.state.posts.map(post => (
-            <li key={post._id}>
+            <div key={post._id}>
               <Link to={`/posts/${post._id}`}>{post.title}</Link>
-            </li>
+              <p>{post.body}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       )
     }
     return (
