@@ -9,6 +9,7 @@ import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
+import ShowPosts from './components/ShowPosts/ShowPosts'
 
 class App extends Component {
   constructor (props) {
@@ -16,7 +17,7 @@ class App extends Component {
     this.state = {
       user: null,
       msgAlerts: [],
-      signUpModal: false
+      signUpModal: true
     }
   }
 
@@ -43,7 +44,6 @@ class App extends Component {
 
   onSignUpModalClose = () => {
     this.setState({ signUpModal: false })
-    return this.state.signUpModal
   }
 
   render () {
@@ -64,7 +64,7 @@ class App extends Component {
         ))}
         <main className="container">
           <Route path='/sign-up' render={() => (
-            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} onSignUpModalShow={this.onSignUpModalShow} onSignUpModalClose={this.onSignUpModalClose}/>
+            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} onSignUpModalShow={this.onSignUpModalShow} onSignUpModalClose={this.onSignUpModalClose} signUpModal={this.state.signUpModal}/>
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
@@ -74,6 +74,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/posts' render={() => (
+            <ShowPosts msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
