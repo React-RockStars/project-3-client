@@ -43,6 +43,7 @@ class App extends Component {
 
   onSignUpModalClose = () => {
     this.setState({ signUpModal: false })
+    return this.state.signUpModal
   }
 
   render () {

@@ -19,12 +19,6 @@ class SignUp extends Component {
     }
   }
 
-  handleShow = () => {
-    this.setState({ show: true })
-    console.log(this.state.show)
-  }
-  handleClose = () => this.setState({ show: false })
-
   handleChange = event => this.setState({
     [event.target.name]: event.target.value
   })
@@ -110,14 +104,14 @@ class SignUp extends Component {
               </div>
             </div>
           </Modal.Body>
-          <Modal.Footer>
+          {/* Modal.Footer>
             <Button variant="secondary" onClick={this.props.onSignUpModalClose}>
             Close
             </Button>
             <Button variant="primary" onClick={this.props.onSignUpModalClose}>
             Save Changes
             </Button>
-          </Modal.Footer>
+          </Modal.Footer> */}
         </Modal>
       </div>
     )
