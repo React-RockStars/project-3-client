@@ -19,6 +19,10 @@ class SignUp extends Component {
     }
   }
 
+  componentDidMount () {
+    this.props.onSignUpModalShow()
+  }
+
   handleChange = event => this.setState({
     [event.target.name]: event.target.value
   })
@@ -52,7 +56,7 @@ class SignUp extends Component {
 
     return (
       <div>
-        <Modal show={this.props.onSignUpModalShow} onHide={this.props.onSignUpModalClose}>
+        <Modal show={this.props.signUpModal} onHide={this.props.onSignUpModalClose}>
           <Modal.Header closeButton>
             <Modal.Title>Sign-Up</Modal.Title>
           </Modal.Header>
