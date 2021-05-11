@@ -15,10 +15,10 @@ class SignUp extends Component {
     this.state = {
       email: '',
       password: '',
-      passwordConfirmation: '',
-      show: true
+      passwordConfirmation: ''
     }
   }
+
   handleShow = () => {
     this.setState({ show: true })
     console.log(this.state.show)
@@ -58,7 +58,7 @@ class SignUp extends Component {
 
     return (
       <div>
-        <Modal show={this.show} onHide={this.handleClose}>
+        <Modal show={this.props.onSignUpModalShow} onHide={this.props.onSignUpModalClose}>
           <Modal.Header closeButton>
             <Modal.Title>Sign-Up</Modal.Title>
           </Modal.Header>
@@ -111,10 +111,10 @@ class SignUp extends Component {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
+            <Button variant="secondary" onClick={this.props.onSignUpModalClose}>
             Close
             </Button>
-            <Button variant="primary" onClick={this.handleClose}>
+            <Button variant="primary" onClick={this.props.onSignUpModalClose}>
             Save Changes
             </Button>
           </Modal.Footer>

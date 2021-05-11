@@ -15,7 +15,8 @@ class App extends Component {
     super(props)
     this.state = {
       user: null,
-      msgAlerts: []
+      msgAlerts: [],
+      signUpModal: false
     }
   }
 
@@ -36,6 +37,14 @@ class App extends Component {
     })
   }
 
+  onSignUpModalShow = () => {
+    this.setState({ signUpModal: true })
+  }
+
+  onSignUpModalClose = () => {
+    this.setState({ signUpModal: false })
+  }
+
   render () {
     const { msgAlerts, user } = this.state
 
@@ -54,7 +63,7 @@ class App extends Component {
         ))}
         <main className="container">
           <Route path='/sign-up' render={() => (
-            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
+            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} onSignUpModalShow={this.onSignUpModalShow} onSignUpModalClose={this.onSignUpModalClose}/>
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
