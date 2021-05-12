@@ -50,13 +50,6 @@ class ShowPosts extends Component {
       })
   }
 
-  editDeleteButton = (postOwner) => {
-    const { user } = this.props
-    if (user === postOwner) {
-      this.setState({ owner: true })
-    }
-  }
-
   render () {
     let postsJsx = ''
     if (this.state.posts === null) {
@@ -73,16 +66,16 @@ class ShowPosts extends Component {
           {this.state.posts.map(post => (
             <div key={post._id}>
               <Card className="text-left">
-                <Card.Header>{post.owner._id}</Card.Header>
+                <Card.Header>{post.owner}</Card.Header>
                 <Card.Body>
                   <Card.Title>{post.title}</Card.Title>
                   <Card.Text>
                     {post.body}
                   </Card.Text>
-                  <Button href={`#/posts/${post._id}/edit-post`}>
-                  Edit</Button>
-                  <Button href={`#/posts/${post._id}/delete-post`}>
-                  Delete</Button>
+                  {this.props.user._id === post.owner ? <Button href={`#/posts/${post._id}/edit-post`}>
+                  Edit</Button> : ''}
+                  {this.props.user._id === post.owner ? <Button href={`#/posts/${post._id}/delete-post`}>
+                  Delete</Button> : ''}
                   <Button href={`#/create-comment/${post._id}`}>
                   Add comment</Button>
                 </Card.Body>
