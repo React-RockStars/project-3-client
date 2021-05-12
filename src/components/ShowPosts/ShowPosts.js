@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
-import { showPosts } from '../../api/post'
+import { showPosts, deletePost } from '../../api/post'
 
 class ShowPosts extends Component {
   constructor () {
@@ -27,6 +27,26 @@ class ShowPosts extends Component {
       })
   }
 
+  deletePost = (postId) => {
+    const { msgAlert, user } = this.props
+    deletePost(user, postId)
+      .then(() =>
+        msgAlert({
+          heading: 'Post was successfully deleted!',
+          message: messages.deletePostSuccess,
+          variant: 'success'
+        }))
+      .then(() => history.push('/posts'))
+      .catch(error => {
+        this.setState({ posts: null })
+        msgAlert({
+          heading: 'Delete post failed with error: ' + error.message,
+          message: messages.deletePostFailure,
+          variant: 'danger'
+        })
+      })
+  }
+
   render () {
     let postsJsx = ''
     if (this.state.posts === null) {
@@ -45,7 +65,11 @@ class ShowPosts extends Component {
               <Link to={`/posts/${post._id}`}>{post.title}</Link>
               <p>{post.body}</p>
               <Link to={`/posts/${post._id}/edit-post`}>
-                <button>Edit Post</button></Link>
+                <button>Edit</button></Link>
+              <Link to={`/posts/${post._id}/delete-post`}>
+                <button>Delete</button>
+              </Link>
+              {/* onClick={this.deletePost(post._id)} */}
             </div>
           ))}
         </div>

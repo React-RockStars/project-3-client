@@ -42,3 +42,13 @@ export const editPost = (postData, user, id) => {
     }
   })
 }
+
+export const deletePost = (user, id) => {
+  return axios({
+    method: 'DELETE',
+    url: apiUrl + `/posts/${id}`,
+    headers: {
+      'Authorization': `Bearer ${user.token}`
+    }
+  })
+}

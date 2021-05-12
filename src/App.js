@@ -12,6 +12,7 @@ import ChangePassword from './components/ChangePassword/ChangePassword'
 import ShowPosts from './components/ShowPosts/ShowPosts'
 import CreatePost from './components/CreatePost/CreatePost'
 import EditPost from './components/EditPost/EditPost'
+import DeletePost from './components/DeletePost/DeletePost'
 
 class App extends Component {
   constructor (props) {
@@ -105,10 +106,10 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} onSignInModalShow={this.onSignInModalShow} onSignInModalClose={this.onSignInModalClose} signInModal={this.state.signInModal}/>
           )} />
-          <AuthenticatedRoute user={user} path='/sign-out' render={() => (
+          <AuthenticatedRoute user={user} exact path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/change-password' render={() => (
+          <AuthenticatedRoute user={user} exact path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} onChangePasswordModalShow={this.onChangePasswordModalShow} onChangePasswordModalClose={this.onChangePasswordModalClose} changePasswordModal={this.state.changePasswordModal}/>
           )} />
           <AuthenticatedRoute user={user} exact path='/posts' render={() => (
@@ -119,6 +120,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/posts/:id/edit-post' render={() => (
             <EditPost msgAlert={this.msgAlert} user={user} onEditPostModalShow={this.onEditPostModalShow} onEditPostModalClose={this.onEditPostModalClose} editPostModal={this.state.editPostModal}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/posts/:id/delete-post' render={() => (
+            <DeletePost msgAlert={this.msgAlert} user={user}/>
           )} />
         </main>
       </Fragment>
