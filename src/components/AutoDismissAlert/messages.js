@@ -8,5 +8,8 @@ export default {
   changePasswordFailure: 'Failed to change passwords. Check your old password and try again.',
   showPostsFailure: 'Failed to load posts.',
   createPostSuccess: 'Post created successfully!',
-  createPostFailure: 'Failed to create post.'
+  createPostFailure: 'Failed to create post.',
+  editPostFailure: 'Failed to edit post.',
+  editPostSuccess: 'Post edited successfully!'
+
 }

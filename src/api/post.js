@@ -26,3 +26,19 @@ export const createPost = (postData, user) => {
     }
   })
 }
+
+export const editPost = (postData, user, id) => {
+  return axios({
+    method: 'PATCH',
+    url: apiUrl + `/posts/${id}`,
+    headers: {
+      'Authorization': `Bearer ${user.token}`
+    },
+    data: {
+      post: {
+        title: postData.title,
+        body: postData.body
+      }
+    }
+  })
+}
