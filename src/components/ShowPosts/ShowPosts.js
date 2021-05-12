@@ -93,7 +93,6 @@ class ShowPosts extends Component {
                   <Card className="text-left">
                     <Card.Header>User</Card.Header>
                     <Card.Body>
-                      <Card.Title>Comment</Card.Title>
                       <Card.Text>
                         {comment.content}
                       </Card.Text>
