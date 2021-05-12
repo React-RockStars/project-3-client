@@ -84,7 +84,7 @@ class ShowPosts extends Component {
               {post.comments.map(comment => (
                 <div key={comment._id}>
                   <Card className="text-left">
-                    <Card.Header>User</Card.Header>
+                    <Card.Header>{comment.owner}</Card.Header>
                     <Card.Body>
                       <Card.Text>
                         {comment.content}
