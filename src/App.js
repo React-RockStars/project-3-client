@@ -13,6 +13,7 @@ import ShowPosts from './components/ShowPosts/ShowPosts'
 import CreatePost from './components/CreatePost/CreatePost'
 import EditPost from './components/EditPost/EditPost'
 import DeletePost from './components/DeletePost/DeletePost'
+import CreateComment from './components/CreateComment/CreateComment'
 
 class App extends Component {
   constructor (props) {
@@ -24,7 +25,8 @@ class App extends Component {
       signInModal: true,
       changePasswordModal: true,
       createPostModal: true,
-      editPostModal: true
+      editPostModal: true,
+      createCommentModal: true
     }
   }
 
@@ -83,6 +85,14 @@ class App extends Component {
     this.setState({ editPostModal: false })
   }
 
+  onCreateCommentModalShow = () => {
+    this.setState({ createCommentModal: true })
+  }
+
+  onCreateCommentModalClose = () => {
+    this.setState({ createCommentModal: false })
+  }
+
   render () {
     const { msgAlerts, user } = this.state
 
@@ -123,6 +133,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/posts/:id/delete-post' render={() => (
             <DeletePost msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/create-comment/:postId' render={() => (
+            <CreateComment msgAlert={this.msgAlert} user={user} onCreateCommentModalShow={this.onCreateCommentModalShow} onCreateCommentModalClose={this.onCreateCommentModalClose} createCommentModal={this.state.createCommentModal}/>
           )} />
         </main>
       </Fragment>

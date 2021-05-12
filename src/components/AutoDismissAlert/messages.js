@@ -10,6 +10,7 @@ export default {
   createPostSuccess: 'Post created successfully!',
   createPostFailure: 'Failed to create post.',
   editPostFailure: 'Failed to edit post.',
-  editPostSuccess: 'Post edited successfully!'
-
+  editPostSuccess: 'Post edited successfully!',
+  createCommentSuccess: 'Comment created successfully!',
+  createCommentFailure: 'Failed to create comment.'
 }

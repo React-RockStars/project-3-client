@@ -83,8 +83,28 @@ class ShowPosts extends Component {
                   Edit</Button>
                   <Button href={`#/posts/${post._id}/delete-post`}>
                   Delete</Button>
+                  <Button href={`#/create-comment/${post._id}`}>
+                  Add comment</Button>
                 </Card.Body>
                 <Card.Footer className="text-muted">{post.timestamp}</Card.Footer>
+              </Card>
+            </div>
+          ))}
+          {this.state.posts.comments.map(comment => (
+            <div key={comment._id}>
+              <Card className="text-left">
+                <Card.Header>{comment.owner}</Card.Header>
+                <Card.Body>
+                  <Card.Title>Comment</Card.Title>
+                  <Card.Text>
+                    {comment.content}
+                  </Card.Text>
+                  <Button href={`#/comments/${comment._id}/edit-comment`}>
+                  Edit</Button>
+                  <Button href={`#/comments/${comment._id}/delete-comment`}>
+                  Delete</Button>
+                </Card.Body>
+                <Card.Footer className="text-muted"></Card.Footer>
               </Card>
             </div>
           ))}
