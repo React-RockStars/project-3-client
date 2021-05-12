@@ -44,6 +44,8 @@ class ShowPosts extends Component {
             <div key={post._id}>
               <Link to={`/posts/${post._id}`}>{post.title}</Link>
               <p>{post.body}</p>
+              <Link to={`/posts/${post._id}/edit-post`}>
+                <button>Edit Post</button></Link>
             </div>
           ))}
         </div>

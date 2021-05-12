@@ -11,6 +11,7 @@ import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import ShowPosts from './components/ShowPosts/ShowPosts'
 import CreatePost from './components/CreatePost/CreatePost'
+import EditPost from './components/EditPost/EditPost'
 
 class App extends Component {
   constructor (props) {
@@ -21,7 +22,8 @@ class App extends Component {
       signUpModal: true,
       signInModal: true,
       changePasswordModal: true,
-      createPostModal: true
+      createPostModal: true,
+      editPostModal: true
     }
   }
 
@@ -72,6 +74,13 @@ class App extends Component {
   onCreatePostModalClose = () => {
     this.setState({ createPostModal: false })
   }
+  onEditPostModalShow = () => {
+    this.setState({ editPostModal: true })
+  }
+
+  onEditPostModalClose = () => {
+    this.setState({ editPostModal: false })
+  }
 
   render () {
     const { msgAlerts, user } = this.state
@@ -107,6 +116,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/create-post' render={() => (
             <CreatePost msgAlert={this.msgAlert} user={user} onCreatePostModalShow={this.onCreatePostModalShow} onCreatePostModalClose={this.onCreatePostModalClose} createPostModal={this.state.createPostModal}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/posts/:id/edit-post' render={() => (
+            <EditPost msgAlert={this.msgAlert} user={user} onEditPostModalShow={this.onEditPostModalShow} onEditPostModalClose={this.onEditPostModalClose} editPostModal={this.state.editPostModal}/>
           )} />
         </main>
       </Fragment>
