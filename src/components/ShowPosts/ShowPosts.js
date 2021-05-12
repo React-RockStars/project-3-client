@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
 import { showPosts, deletePost } from '../../api/post'
 import Card from 'react-bootstrap/Card'
@@ -10,7 +10,8 @@ class ShowPosts extends Component {
     super()
 
     this.state = {
-      posts: null
+      posts: null,
+      owner: false
     }
   }
   componentDidMount () {
@@ -49,6 +50,13 @@ class ShowPosts extends Component {
       })
   }
 
+  editDeleteButton = (postOwner) => {
+    const { user } = this.props
+    if (user === postOwner) {
+      this.setState({ owner: true })
+    }
+  }
+
   render () {
     let postsJsx = ''
     if (this.state.posts === null) {
@@ -65,9 +73,9 @@ class ShowPosts extends Component {
           {this.state.posts.map(post => (
             <div key={post._id}>
               <Card className="text-left">
-                <Card.Header>User</Card.Header>
+                <Card.Header>{post.owner}</Card.Header>
                 <Card.Body>
-                  <Card.Title><Link to={`/posts/${post._id}`}>{post.title}</Link></Card.Title>
+                  <Card.Title>{post.title}</Card.Title>
                   <Card.Text>
                     {post.body}
                   </Card.Text>
