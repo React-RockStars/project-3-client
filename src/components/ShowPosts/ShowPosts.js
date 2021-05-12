@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
 import { showPosts, deletePost } from '../../api/post'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 class ShowPosts extends Component {
   constructor () {
@@ -62,14 +64,20 @@ class ShowPosts extends Component {
         <div>
           {this.state.posts.map(post => (
             <div key={post._id}>
-              <Link to={`/posts/${post._id}`}>{post.title}</Link>
-              <p>{post.body}</p>
-              <Link to={`/posts/${post._id}/edit-post`}>
-                <button>Edit</button></Link>
-              <Link to={`/posts/${post._id}/delete-post`}>
-                <button>Delete</button>
-              </Link>
-              {/* onClick={this.deletePost(post._id)} */}
+              <Card className="text-left">
+                <Card.Header>User</Card.Header>
+                <Card.Body>
+                  <Card.Title><Link to={`/posts/${post._id}`}>{post.title}</Link></Card.Title>
+                  <Card.Text>
+                    {post.body}
+                  </Card.Text>
+                  <Button href={`#/posts/${post._id}/edit-post`}>
+                  Edit</Button>
+                  <Button href={`#/posts/${post._id}/delete-post`}>
+                  Delete</Button>
+                </Card.Body>
+                <Card.Footer className="text-muted">{post.timestamp}</Card.Footer>
+              </Card>
             </div>
           ))}
         </div>
