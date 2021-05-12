@@ -73,7 +73,7 @@ class ShowPosts extends Component {
           {this.state.posts.map(post => (
             <div key={post._id}>
               <Card className="text-left">
-                <Card.Header>{post.owner}</Card.Header>
+                <Card.Header>{post.owner._id}</Card.Header>
                 <Card.Body>
                   <Card.Title>{post.title}</Card.Title>
                   <Card.Text>
@@ -88,24 +88,25 @@ class ShowPosts extends Component {
                 </Card.Body>
                 <Card.Footer className="text-muted">{post.timestamp}</Card.Footer>
               </Card>
-            </div>
-          ))}
-          {this.state.posts.comments.map(comment => (
-            <div key={comment._id}>
-              <Card className="text-left">
-                <Card.Header>{comment.owner}</Card.Header>
-                <Card.Body>
-                  <Card.Title>Comment</Card.Title>
-                  <Card.Text>
-                    {comment.content}
-                  </Card.Text>
-                  <Button href={`#/comments/${comment._id}/edit-comment`}>
-                  Edit</Button>
-                  <Button href={`#/comments/${comment._id}/delete-comment`}>
-                  Delete</Button>
-                </Card.Body>
-                <Card.Footer className="text-muted"></Card.Footer>
-              </Card>
+              {post.comments.map(comment => (
+                <div key={comment._id}>
+                  <Card className="text-left">
+                    <Card.Header>User</Card.Header>
+                    <Card.Body>
+                      <Card.Title>Comment</Card.Title>
+                      <Card.Text>
+                        {comment.content}
+                      </Card.Text>
+                      <Button href={`#/comments/${comment._id}/edit-comment`}>
+                      Edit</Button>
+                      <Button href={`#/comments/${post._id}/delete-comment`}>
+                      Delete</Button>
+                    </Card.Body>
+                    <Card.Footer className="text-muted">{comment.timestamp}</Card.Footer>
+                  </Card>
+                </div>
+              ))
+              }
             </div>
           ))}
         </div>
