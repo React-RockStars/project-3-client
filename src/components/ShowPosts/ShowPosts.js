@@ -75,18 +75,18 @@ class ShowPosts extends Component {
                     <Card.Text>
                       {post.body}
                     </Card.Text>
-                    {this.props.user._id === post.owner ? <Button href={`#/posts/${post._id}/edit-post`}>
+                    {this.props.user._id === post.owner ? <Button variant="secondary" href={`#/posts/${post._id}/edit-post`}>
                     Edit</Button> : ''}
-                    {this.props.user._id === post.owner ? <Button href={`#/posts/${post._id}/delete-post`}>
+                    {this.props.user._id === post.owner ? <Button variant="dark" href={`#/posts/${post._id}/delete-post`}>
                     Delete</Button> : ''}
-                    <Button href={`#/create-comment/${post._id}`}>
+                    <Button variant="info" href={`#/create-comment/${post._id}`}>
                     Add comment</Button>
                   </Card.Body>
                   <Card.Footer className="text-muted">{post.updatedAt}</Card.Footer>
                 </Card>
                 {post.comments.length > 0
                   ? <Accordion>
-                    <Card>
+                    <Card bg="info">
                       <Card.Header>
                         <Accordion.Toggle as={Button} variant="link" eventKey="0">
                           View comments
@@ -96,9 +96,9 @@ class ShowPosts extends Component {
                         <Card.Body>{post.comments.map(comment => (
                           <div key={comment._id}>
                             <p>{comment.content}</p>
-                            <Button href={`#/comments/${comment._id}/edit-comment/${post._id}`}>
+                            <Button variant="secondary" href={`#/comments/${comment._id}/edit-comment/${post._id}`}>
                           Edit</Button>
-                            <Button href={`#/comments/${comment._id}/delete-comment/${post._id}`}>
+                            <Button variant="dark" href={`#/comments/${comment._id}/delete-comment/${post._id}`}>
                           Delete</Button>
                           </div>
                         ))}
@@ -115,7 +115,7 @@ class ShowPosts extends Component {
     }
     return (
       <Fragment>
-        <h1>What&apos;cha Watchin&apos;</h1>
+        <h1>What&apos;cha Watchin&apos;?</h1>
         {postsJsx}
       </Fragment>
     )
