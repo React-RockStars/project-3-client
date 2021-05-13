@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
-import { createComment } from '../../api/post'
+import { createComment } from '../../api/comment'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -42,7 +42,7 @@ class CreateComment extends Component {
         }))
       .then(() => history.push('/posts'))
       .catch(error => {
-        this.setState({ title: '', body: '' })
+        this.setState({ content: '' })
         msgAlert({
           heading: 'Create comment failed with error: ' + error.message,
           message: messages.createCommentFailure,

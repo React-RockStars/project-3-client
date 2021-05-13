@@ -89,9 +89,9 @@ class ShowPosts extends Component {
                       <Card.Text>
                         {comment.content}
                       </Card.Text>
-                      <Button href={`#/comments/${comment._id}/edit-comment`}>
+                      <Button href={`#/comments/${comment._id}/edit-comment/${post._id}`}>
                       Edit</Button>
-                      <Button href={`#/comments/${post._id}/delete-comment`}>
+                      <Button href={`#/comments/${comment._id}/delete-comment/${post._id}`}>
                       Delete</Button>
                     </Card.Body>
                     <Card.Footer className="text-muted">{comment.timestamp}</Card.Footer>
