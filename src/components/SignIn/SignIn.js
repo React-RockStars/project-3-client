@@ -55,7 +55,6 @@ class SignIn extends Component {
       <div>
         <Modal show={this.props.signInModal} onHide={this.props.onSignInModalClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Sign-In</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="row">

@@ -19,6 +19,7 @@ class ShowPosts extends Component {
     showPosts(user)
       .then(res => {
         this.setState({ posts: res.data.posts })
+        console.log(this.state.posts)
       })
       .catch(error => {
         this.setState({ posts: null })
@@ -66,7 +67,7 @@ class ShowPosts extends Component {
           {this.state.posts.map(post => (
             <div key={post._id}>
               <Card className="text-left">
-                <Card.Header>{post.owner}</Card.Header>
+                <Card.Header>Post</Card.Header>
                 <Card.Body>
                   <Card.Title>{post.title}</Card.Title>
                   <Card.Text>
@@ -79,7 +80,7 @@ class ShowPosts extends Component {
                   <Button href={`#/create-comment/${post._id}`}>
                   Add comment</Button>
                 </Card.Body>
-                <Card.Footer className="text-muted">{post.timestamp}</Card.Footer>
+                <Card.Footer className="text-muted">{post.updatedAt}</Card.Footer>
               </Card>
               {post.comments.map(comment => (
                 <div key={comment._id}>
@@ -106,7 +107,7 @@ class ShowPosts extends Component {
     }
     return (
       <Fragment>
-        <h1>Show All Posts</h1>
+        <h1>What&apos;cha Watchin&apos;</h1>
         {postsJsx}
       </Fragment>
     )
