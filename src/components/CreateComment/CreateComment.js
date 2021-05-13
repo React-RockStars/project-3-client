@@ -61,7 +61,7 @@ class CreateComment extends Component {
           <Modal.Body>
             <div className="row">
               <div className="col-sm-10 col-md-8 mx-auto mt-5">
-                <h3>Create Post</h3>
+                <h3>Create Comment</h3>
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Group controlId="content">
                     <Form.Label>Content</Form.Label>

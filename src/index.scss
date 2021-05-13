@@ -3,4 +3,44 @@ $secondary: #556faa;
 $dark: #49a99c;
 $info: #aa5599;
 
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand&display=swap');
+
+$font-family-base: 'Quicksand', sans-serif;
+
 @import '~bootstrap/scss/bootstrap';
+
+
+.btn-edit {
+  background-color: #556faa;
+  color: white;
+  margin-right: 5px
+}
+
+.btn-delete {
+  background-color: #49a99c;
+  color: white;
+  margin-right: 5px
+}
+
+.btn-add-comment {
+  background-color: #aa5599;
+  color: white
+}
+
+.navbar, h3, h5 {
+  font-family: 'Press Start 2P', cursive !important;
+}
+
+h5 {
+  margin-top: 25px;
+}
+
+.comment-separator {
+  background-color: $info;
+  height: 2px;
+  margin-top: 30px;
+}
+
+.main-header {
+  color: $info
+}

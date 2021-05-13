@@ -68,42 +68,51 @@ class ShowPosts extends Component {
           {this.state.posts.map(post => (
             <div key={post._id}>
               <div className="mx-auto mt-5">
-                <Card className="text-left">
-                  <Card.Header>Post</Card.Header>
+                <Card border="primary" className="text-left">
+                  <Card.Header as="h4">Post</Card.Header>
                   <Card.Body>
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text>
                       {post.body}
                     </Card.Text>
-                    {this.props.user._id === post.owner ? <Button variant="secondary" href={`#/posts/${post._id}/edit-post`}>
+                    {this.props.user._id === post.owner ? <Button size="sm" variant="edit" href={`#/posts/${post._id}/edit-post`}>
                     Edit</Button> : ''}
-                    {this.props.user._id === post.owner ? <Button variant="dark" href={`#/posts/${post._id}/delete-post`}>
+                    {this.props.user._id === post.owner ? <Button size="sm" variant="delete" href={`#/posts/${post._id}/delete-post`}>
                     Delete</Button> : ''}
-                    <Button variant="info" href={`#/create-comment/${post._id}`}>
+                    <Button size="sm" variant="add-comment" href={`#/create-comment/${post._id}`}>
                     Add comment</Button>
                   </Card.Body>
-                  <Card.Footer className="text-muted">{post.updatedAt}</Card.Footer>
+                  <Card.Footer as="p" className="text-muted">{post.updatedAt}</Card.Footer>
                 </Card>
                 {post.comments.length > 0
                   ? <Accordion>
-                    <Card bg="info">
+                    <Card border="primary">
                       <Card.Header>
-                        <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                          View comments
+                        <Accordion.Toggle size="sm" as={Button} variant="outline-info" eventKey="0">
+                          Toggle comments on this post
                         </Accordion.Toggle>
                       </Card.Header>
                       <Accordion.Collapse eventKey="0">
-                        <Card.Body>{post.comments.map(comment => (
-                          <div key={comment._id}>
-                            <p>{comment.content}</p>
-                            <Button variant="secondary" href={`#/comments/${comment._id}/edit-comment/${post._id}`}>
-                          Edit</Button>
-                            <Button variant="dark" href={`#/comments/${comment._id}/delete-comment/${post._id}`}>
-                          Delete</Button>
-                          </div>
-                        ))}
+                        <Card.Body>
+                          {post.comments.map(comment => (
+                            <div key={comment._id}>
+                              <Card.Body>
+                                <p>{comment.content}</p>
+                                <Button size="sm" variant="edit" href={`#/comments/${comment._id}/edit-comment/${post._id}`}>
+                              Edit</Button>
+                                <Button size="sm" variant="delete" href={`#/comments/${comment._id}/delete-comment/${post._id}`}>
+                              Delete</Button>
+                                <div className="comment-separator">
+                                </div>
+                              </Card.Body>
+                            </div>
+                          ))}
                         </Card.Body>
                       </Accordion.Collapse>
+                    </Card>
+                    <Card bg="primary" border="primary">
+                      <Card.Header>
+                      </Card.Header>
                     </Card>
                   </Accordion> : ''}
               </div>
@@ -115,7 +124,7 @@ class ShowPosts extends Component {
     }
     return (
       <Fragment>
-        <h1>What&apos;cha Watchin&apos;?</h1>
+        <h5 className="main-header">What&apos;cha Watchin&apos;?</h5>
         {postsJsx}
       </Fragment>
     )
