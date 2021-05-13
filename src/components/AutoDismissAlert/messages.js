@@ -12,5 +12,7 @@ export default {
   editPostFailure: 'Failed to edit post.',
   editPostSuccess: 'Post edited successfully!',
   createCommentSuccess: 'Comment created successfully!',
-  createCommentFailure: 'Failed to create comment.'
+  createCommentFailure: 'Failed to create comment.',
+  editCommentFailure: 'Failed to edit comment.',
+  editCommentSuccess: 'Comment edited successfully!'
 }
