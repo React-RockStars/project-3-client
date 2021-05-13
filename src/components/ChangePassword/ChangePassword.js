@@ -54,7 +54,6 @@ class ChangePassword extends Component {
       <div>
         <Modal show={this.props.changePasswordModal} onHide={this.props.onChangePasswordModalClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Change-Password</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="row">

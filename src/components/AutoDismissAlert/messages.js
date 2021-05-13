@@ -9,10 +9,14 @@ export default {
   showPostsFailure: 'Failed to load posts.',
   createPostSuccess: 'Post created successfully!',
   createPostFailure: 'Failed to create post.',
+  deletePostSuccess: 'Post deleted successfully!',
+  deletePostFailure: 'Failed to delete post.',
   editPostFailure: 'Failed to edit post.',
   editPostSuccess: 'Post edited successfully!',
   createCommentSuccess: 'Comment created successfully!',
   createCommentFailure: 'Failed to create comment.',
   editCommentFailure: 'Failed to edit comment.',
-  editCommentSuccess: 'Comment edited successfully!'
+  editCommentSuccess: 'Comment edited successfully!',
+  deleteCommentFailure: 'Failed to delete comment.',
+  deleteCommentSuccess: 'Comment deleted successfully!'
 }

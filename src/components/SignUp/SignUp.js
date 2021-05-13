@@ -58,7 +58,6 @@ class SignUp extends Component {
       <div>
         <Modal show={this.props.signUpModal} onHide={this.props.onSignUpModalClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Sign-Up</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="row">
