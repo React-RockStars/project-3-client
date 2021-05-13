@@ -4,6 +4,7 @@ import messages from '../AutoDismissAlert/messages'
 import { showPosts, deletePost } from '../../api/post'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import Accordion from 'react-bootstrap/Accordion'
 
 class ShowPosts extends Component {
   constructor () {
@@ -19,6 +20,7 @@ class ShowPosts extends Component {
     showPosts(user)
       .then(res => {
         this.setState({ posts: res.data.posts })
+        console.log(this.state.posts)
       })
       .catch(error => {
         this.setState({ posts: null })
@@ -65,48 +67,64 @@ class ShowPosts extends Component {
         <div>
           {this.state.posts.map(post => (
             <div key={post._id}>
-              <Card className="text-left">
-                <Card.Header>{post.owner}</Card.Header>
-                <Card.Body>
-                  <Card.Title>{post.title}</Card.Title>
-                  <Card.Text>
-                    {post.body}
-                  </Card.Text>
-                  {this.props.user._id === post.owner ? <Button href={`#/posts/${post._id}/edit-post`}>
-                  Edit</Button> : ''}
-                  {this.props.user._id === post.owner ? <Button href={`#/posts/${post._id}/delete-post`}>
-                  Delete</Button> : ''}
-                  <Button href={`#/create-comment/${post._id}`}>
-                  Add comment</Button>
-                </Card.Body>
-                <Card.Footer className="text-muted">{post.timestamp}</Card.Footer>
-              </Card>
-              {post.comments.map(comment => (
-                <div key={comment._id}>
-                  <Card className="text-left">
-                    <Card.Header>{comment.owner}</Card.Header>
-                    <Card.Body>
-                      <Card.Text>
-                        {comment.content}
-                      </Card.Text>
-                      <Button href={`#/comments/${comment._id}/edit-comment`}>
-                      Edit</Button>
-                      <Button href={`#/comments/${post._id}/delete-comment`}>
-                      Delete</Button>
-                    </Card.Body>
-                    <Card.Footer className="text-muted">{comment.timestamp}</Card.Footer>
-                  </Card>
-                </div>
-              ))
-              }
+              <div className="mx-auto mt-5">
+                <Card border="primary" className="text-left">
+                  <Card.Header as="h4">Post</Card.Header>
+                  <Card.Body>
+                    <Card.Title>{post.title}</Card.Title>
+                    <Card.Text>
+                      {post.body}
+                    </Card.Text>
+                    {this.props.user._id === post.owner ? <Button size="sm" variant="edit" href={`#/posts/${post._id}/edit-post`}>
+                    Edit</Button> : ''}
+                    {this.props.user._id === post.owner ? <Button size="sm" variant="delete" href={`#/posts/${post._id}/delete-post`}>
+                    Delete</Button> : ''}
+                    <Button size="sm" variant="add-comment" href={`#/create-comment/${post._id}`}>
+                    Add comment</Button>
+                  </Card.Body>
+                  <Card.Footer as="p" className="text-muted">{post.updatedAt}</Card.Footer>
+                </Card>
+                {post.comments.length > 0
+                  ? <Accordion>
+                    <Card border="primary">
+                      <Card.Header>
+                        <Accordion.Toggle size="sm" as={Button} variant="outline-info" eventKey="0">
+                          Toggle comments on this post
+                        </Accordion.Toggle>
+                      </Card.Header>
+                      <Accordion.Collapse eventKey="0">
+                        <Card.Body>
+                          {post.comments.map(comment => (
+                            <div key={comment._id}>
+                              <Card.Body>
+                                <p>{comment.content}</p>
+                                <Button size="sm" variant="edit" href={`#/comments/${comment._id}/edit-comment/${post._id}`}>
+                              Edit</Button>
+                                <Button size="sm" variant="delete" href={`#/comments/${comment._id}/delete-comment/${post._id}`}>
+                              Delete</Button>
+                                <div className="comment-separator">
+                                </div>
+                              </Card.Body>
+                            </div>
+                          ))}
+                        </Card.Body>
+                      </Accordion.Collapse>
+                    </Card>
+                    <Card bg="primary" border="primary">
+                      <Card.Header>
+                      </Card.Header>
+                    </Card>
+                  </Accordion> : ''}
+              </div>
             </div>
-          ))}
+          ))
+          }
         </div>
       )
     }
     return (
       <Fragment>
-        <h1>Show All Posts</h1>
+        <h5 className="main-header">What&apos;cha Watchin&apos;?</h5>
         {postsJsx}
       </Fragment>
     )

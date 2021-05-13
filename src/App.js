@@ -14,6 +14,8 @@ import CreatePost from './components/CreatePost/CreatePost'
 import EditPost from './components/EditPost/EditPost'
 import DeletePost from './components/DeletePost/DeletePost'
 import CreateComment from './components/CreateComment/CreateComment'
+import EditComment from './components/EditComment/EditComment'
+import DeleteComment from './components/DeleteComment/DeleteComment'
 
 class App extends Component {
   constructor (props) {
@@ -26,7 +28,8 @@ class App extends Component {
       changePasswordModal: true,
       createPostModal: true,
       editPostModal: true,
-      createCommentModal: true
+      createCommentModal: true,
+      editCommentModal: true
     }
   }
 
@@ -93,6 +96,14 @@ class App extends Component {
     this.setState({ createCommentModal: false })
   }
 
+  onEditCommentModalShow = () => {
+    this.setState({ editCommentModal: true })
+  }
+
+  onEditCommentModalClose = () => {
+    this.setState({ editCommentModal: false })
+  }
+
   render () {
     const { msgAlerts, user } = this.state
 
@@ -136,6 +147,12 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/create-comment/:postId' render={() => (
             <CreateComment msgAlert={this.msgAlert} user={user} onCreateCommentModalShow={this.onCreateCommentModalShow} onCreateCommentModalClose={this.onCreateCommentModalClose} createCommentModal={this.state.createCommentModal}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/comments/:commentId/edit-comment/:postId' render={() => (
+            <EditComment msgAlert={this.msgAlert} user={user} onEditCommentModalShow={this.onEditCommentModalShow} onEditCommentModalClose={this.onEditCommentModalClose} editCommentModal={this.state.editCommentModal}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/comments/:commentId/delete-comment/:postId' render={() => (
+            <DeleteComment msgAlert={this.msgAlert} user={user}/>
           )} />
         </main>
       </Fragment>

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
-import { createComment } from '../../api/comment'
+import { editComment } from '../../api/comment'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
-class CreateComment extends Component {
+class EditComment extends Component {
   constructor () {
     super()
 
@@ -19,7 +19,7 @@ class CreateComment extends Component {
   }
 
   componentDidMount () {
-    this.props.onCreateCommentModalShow()
+    this.props.onEditCommentModalShow()
   }
 
   handleChange = event => this.setState({
@@ -29,23 +29,23 @@ class CreateComment extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const { msgAlert, history, user } = this.props
-    const { postId } = this.props.match.params
-    createComment(this.state, user, postId)
+    const { postId, commentId } = this.props.match.params
+    editComment(this.state, user, commentId, postId)
       .then(res => {
         this.setState({ comment: res.data.comment })
       })
       .then(() =>
         msgAlert({
-          heading: 'Create comment success',
-          message: messages.createCommentSuccess,
+          heading: 'Edit comment success',
+          message: messages.editCommentSuccess,
           variant: 'success'
         }))
       .then(() => history.push('/posts'))
       .catch(error => {
         this.setState({ content: '' })
         msgAlert({
-          heading: 'Create comment failed with error: ' + error.message,
-          message: messages.createCommentFailure,
+          heading: 'Edit comment failed with error: ' + error.message,
+          message: messages.editCommentFailure,
           variant: 'danger'
         })
       })
@@ -54,14 +54,14 @@ class CreateComment extends Component {
     const { content } = this.state
     return (
       <div>
-        <Modal show={this.props.createCommentModal} onHide={this.props.onCreateCommentModalClose}>
+        <Modal show={this.props.editCommentModal} onHide={this.props.onEditCommentModalClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Add Comment</Modal.Title>
+            <Modal.Title>Edit Comment</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="row">
               <div className="col-sm-10 col-md-8 mx-auto mt-5">
-                <h3>Create Comment</h3>
+                <h3>Edit Comment</h3>
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Group controlId="content">
                     <Form.Label>Content</Form.Label>
@@ -70,7 +70,7 @@ class CreateComment extends Component {
                       type="text"
                       name="content"
                       value={content}
-                      placeholder="Enter comment"
+                      placeholder="Edit comment"
                       onChange={this.handleChange}
                     />
                   </Form.Group>
@@ -90,4 +90,4 @@ class CreateComment extends Component {
   }
 }
 
-export default withRouter(CreateComment)
+export default withRouter(EditComment)

@@ -52,19 +52,3 @@ export const deletePost = (user, id) => {
     }
   })
 }
-
-export const createComment = (commentData, user, postId) => {
-  return axios({
-    method: 'POST',
-    url: apiUrl + '/comments',
-    headers: {
-      'Authorization': `Bearer ${user.token}`
-    },
-    data: {
-      comment: {
-        content: commentData.content,
-        postId: postId
-      }
-    }
-  })
-}
