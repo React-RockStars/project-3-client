@@ -20,7 +20,6 @@ class ShowPosts extends Component {
     showPosts(user)
       .then(res => {
         this.setState({ posts: res.data.posts })
-        console.log(this.state.posts)
       })
       .catch(error => {
         this.setState({ posts: null })
@@ -98,10 +97,10 @@ class ShowPosts extends Component {
                             <div key={comment._id}>
                               <Card.Body>
                                 <p>{comment.content}</p>
-                                <Button size="sm" variant="edit" href={`#/comments/${comment._id}/edit-comment/${post._id}`}>
-                              Edit</Button>
-                                <Button size="sm" variant="delete" href={`#/comments/${comment._id}/delete-comment/${post._id}`}>
-                              Delete</Button>
+                                {this.props.user._id === comment.owner ? <Button size="sm" variant="edit" href={`#/comments/${comment._id}/edit-comment/${post._id}`}>
+                              Edit</Button> : ''}
+                                {this.props.user._id === comment.owner ? <Button size="sm" variant="delete" href={`#/comments/${comment._id}/delete-comment/${post._id}`}>
+                              Delete</Button> : ''}
                                 <div className="comment-separator">
                                 </div>
                               </Card.Body>
